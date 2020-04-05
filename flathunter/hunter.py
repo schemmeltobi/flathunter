@@ -37,7 +37,7 @@ class Hunter:
                 # check if already processed
                 if expose['id'] in processed:
                     continue
-
+                
                 self.__log__.info('New offer: ' + expose['title'])
 
                 # to reduce traffic, some addresses need to be loaded on demand
