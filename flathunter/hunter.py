@@ -15,7 +15,6 @@ class Hunter:
     def hunt_flats(self, config, searchers, id_watch):
         sender = SenderTelegram(config)
         new_links = 0
-        processed = id_watch.get()
 
         for url in config.get('urls', list()):
             self.__log__.debug('Processing URL: ' + url)
@@ -35,6 +34,7 @@ class Hunter:
 
             for expose in results:
                 # check if already processed
+                processed = id_watch.get()
                 if expose['id'] in processed:
                     continue
                 

@@ -10,10 +10,13 @@ class SenderTelegram(Base):
     def __init__(self, cfg):
         self.cfg = cfg
         self.bot_token = self.cfg.get('telegram', dict()).get('bot_token', '')
+        self.__log__.debug("Bot token: " + str(self.bot_token))
         self.receiver_ids = self.cfg.get('telegram', dict()).get('receiver_ids', list())
+        self.__log__.debug("Receiver IDs: " + str(self.receiver_ids))
 
 
     def send_msg(self, message):
+        self.__log__.debug("Send Message" + message.encode('utf-8'))
         for chat_id in self.receiver_ids:
             url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%i&text=%s'
             text = urllib.quote_plus(message.encode('utf-8'))
